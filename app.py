@@ -82,7 +82,7 @@ def main():
     st.markdown(
         """
     ## **Inspiration** \n
-    This dataset was built with the purpose of helping students in shortlisting universities with their profiles. \
+    The dataset was built with the purpose of helping students in shortlisting universities with their profiles. \
     The predicted output gives them a fair idea about their chances for a particular university.
 
     ## **Methodology** \n
@@ -94,7 +94,7 @@ def main():
     However, it cannot be relied upon due to the existence of multicollinearity.
 
     ## **Acknowledgement** \n
-    This dataset used is inspired by the UCLA Graduate Dataset and is created by Mohan S Acharya to estimate chances of graduate admission from an Indian perspective.
+    The dataset used is inspired by the UCLA Graduate Dataset and is created by Mohan S Acharya to estimate chances of graduate admission from an Indian perspective.
     """
     )
 
