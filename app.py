@@ -74,8 +74,19 @@ def main():
         # Apply model to make predictions
         prediction = load_clf.predict(input_df)
 
-        st.subheader("Prediction Probability")
-        st.write(prediction)
+        labels = ["Yes", "No"]
+        values = [prediction[0], 1 - prediction[0]]
+        fig = go.Figure(data=[go.Pie(labels=labels, values=values)])
+        fig.update_layout(
+            title={
+                "text": "Probability of getting into UCLA",
+                "y": 0.9,
+                "x": 0.5,
+                "xanchor": "center",
+                "yanchor": "top",
+            }
+        )
+        st.plotly_chart(fig, use_container_width=True)
         if prediction > 0.9:
             st.balloons()
 
