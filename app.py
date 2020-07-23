@@ -49,8 +49,8 @@ def main():
     st.title("Chances of getting into UCLA :mortar_board:")
     st.sidebar.markdown("**Developed by -** Manas Sambare")
     st.sidebar.markdown(
-        "**[GitHub Repo](https://github.com/Manas73/fer-2013) - "
-        "[Kaggle Project](https://www.kaggle.com/msambare/facial-expression-detection) - "
+        "**[GitHub Repo](https://github.com/Manas73/ucla-admission) - "
+        "[Kaggle Project](https://www.kaggle.com/msambare/analysis-of-graduate-admissions) - "
         "[LinkedIn](https://www.linkedin.com/in/manas-sambare)**"
     )
     st.sidebar.header("Provide your Academic Details")
