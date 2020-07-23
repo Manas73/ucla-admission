@@ -43,6 +43,40 @@ def user_input_features():
     return features
 
 
+@st.cache()
+def get_feature_importance(model):
+    features = [
+        "GRE Score",
+        "TOEFL Score",
+        "University Rating",
+        "SOP",
+        "LOR",
+        "CGPA",
+        "Research",
+    ]
+    df_features = pd.DataFrame()
+    df_features["Features"] = features
+    df_features["Importance"] = model.feature_importances_
+    fig_features = go.Figure(
+        [
+            go.Pie(
+                labels=df_features["Features"],
+                values=df_features["Importance"],
+            )
+        ]
+    )
+    fig_features.update_layout(
+        title={
+            "text": "Feature Importance",
+            "y": 0.9,
+            "x": 0.5,
+            "xanchor": "center",
+            "yanchor": "top",
+        }
+    )
+    return fig_features
+
+
 def main():
     """Graduate Admission into UCLA Analysis"""
 
@@ -69,10 +103,10 @@ def main():
         st.subheader("User Input features")
         st.write(input_df)
         # Reads in saved classification model
-        load_clf = pickle.load(open("model.pkl", "rb"))
+        model = pickle.load(open("model.pkl", "rb"))
 
         # Apply model to make predictions
-        prediction = load_clf.predict(input_df)
+        prediction = model.predict(input_df)
 
         labels = ["Yes", "No"]
         values = [prediction[0], 1 - prediction[0]]
@@ -103,7 +137,14 @@ def main():
     The Random Forest model could best predict the Chance of Admit by reducing the error below 0.05. \
     It was found that the Undergraduate GPA is the most important feature (80%). \
     However, it cannot be relied upon due to the existence of multicollinearity.
+    """
+    )
 
+    fig_features = get_feature_importance(model)
+    st.plotly_chart(fig_features)
+
+    st.markdown(
+        """
     ## **Acknowledgement** \n
     The dataset used is inspired by the UCLA Graduate Dataset and is created by Mohan S Acharya to estimate chances of graduate admission from an Indian perspective.
     """
